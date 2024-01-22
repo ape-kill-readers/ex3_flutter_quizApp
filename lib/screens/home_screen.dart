@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'second_screen.dart';
+import 'quiz_screen.dart';
 
-class FirstScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class FirstScreen extends StatelessWidget {
           // Navigate to the second screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SecondScreen()),
+              MaterialPageRoute(builder: (context) => QuizScreen()),
             );
           },
           child: const Text('Go to Second Screen'),
