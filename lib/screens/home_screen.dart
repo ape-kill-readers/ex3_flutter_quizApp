@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           // Navigate to the second screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => QuizScreen()),
+              MaterialPageRoute(builder: (context) => const QuizScreen()),
             );
           },
           child: const Text('Go to Second Screen'),
