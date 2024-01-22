@@ -7,7 +7,10 @@ class FirstScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('First Screen'),
+        title: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.0),
+          child: Text('英単語'),
+        ),
         backgroundColor: Colors.blue[300],
       ),
       body: Center(
