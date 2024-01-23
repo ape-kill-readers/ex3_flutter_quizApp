@@ -17,11 +17,13 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
   fonts:
   - family: IPAex
     fonts:
       - asset: assets/fonts/Ipaex-Gothic.ttf
+
+  assets:
+  - assets/data/quiz_data.csv
 
   uses-material-design: true
 
