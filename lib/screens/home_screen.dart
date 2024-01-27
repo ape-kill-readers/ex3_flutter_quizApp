@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'quiz_screen.dart';
+import 'choice_quiz.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,10 +20,10 @@ class HomeScreen extends StatelessWidget {
           // Navigate to the second screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const QuizScreen()),
+              MaterialPageRoute(builder: (context) => const ChoiceQuizScreen()),
             );
           },
-          child: const Text('Go to Second Screen'),
+          child: const Text('4択問題'),
         ),
       ),
     );

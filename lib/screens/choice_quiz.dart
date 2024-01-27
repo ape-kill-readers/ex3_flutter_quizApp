@@ -11,15 +11,15 @@ class QuizQuestion {
   QuizQuestion(this.question, this.options, this.correctAnswer);
 }
 
-class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+class ChoiceQuizScreen extends StatefulWidget {
+  const ChoiceQuizScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _QuizeScreenState createState() => _QuizeScreenState();
 }
 
-class _QuizeScreenState extends State<QuizScreen> {
+class _QuizeScreenState extends State<ChoiceQuizScreen> {
   List<QuizQuestion> quizQuestions = [];
 
   @override
