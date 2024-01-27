@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 30.0),
-          child: Text('英単語'),
+          child: Text('英単語クイズ'),
         ),
         backgroundColor: Colors.blue[300],
       ),
