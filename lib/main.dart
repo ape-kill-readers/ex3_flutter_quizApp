@@ -14,6 +14,11 @@ class MyApp extends StatelessWidget {
         home: const HomeScreen(),
         theme: ThemeData(
           fontFamily: 'IPAex',
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              onPrimary: Colors.black87,
+            ),
+          ),
         )
       );
   }
