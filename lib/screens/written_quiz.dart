@@ -9,8 +9,9 @@ class QuizQuestion {
   String question;
   List<String> options;
   String correctAnswer;
+  String correctNumber;
 
-  QuizQuestion(this.question, this.options, this.correctAnswer);
+  QuizQuestion(this.question, this.options, this.correctAnswer, this.correctNumber);
 }
 
 class WrittenQuizScreen extends StatefulWidget {
@@ -78,6 +79,7 @@ class _QuizeScreenState extends State<WrittenQuizScreen> {
           row[0],
           [row[1], row[2], row[3], row[4]],
           row[5],
+          row[6],
         );
       }).toList();
     });
