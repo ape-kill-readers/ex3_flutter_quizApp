@@ -1,6 +1,5 @@
 # practice_flutter
 
-A new Flutter project.
 ---
 
 debug and run
