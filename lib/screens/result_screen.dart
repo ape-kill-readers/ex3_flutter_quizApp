@@ -14,12 +14,15 @@ class ResultScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 30.0),
-          child: Text('英単語クイズ'),
+          child: Text('結果'),
         ),
         backgroundColor: Colors.blue[300],
       ),
+
+
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               '$score / $maxScore',
