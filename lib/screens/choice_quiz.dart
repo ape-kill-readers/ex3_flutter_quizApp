@@ -47,7 +47,12 @@ class _QuizeScreenState extends State<ChoiceQuizScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quiz App'),
+        automaticallyImplyLeading: false,
+        title: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.0),
+          child: Text('4択クイズ'),
+        ),
+        backgroundColor: Colors.blue[300],
       ),
       body: quizQuestions.isEmpty
         ? const Center(
