@@ -3,7 +3,7 @@ import 'package:csv/csv.dart';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
-import 'finish_screen.dart';
+import 'result_screen.dart';
 
 class QuizQuestion {
   String question;
@@ -39,7 +39,7 @@ class _QuizeScreenState extends State<WrittenQuizScreen> {
         index = 0;
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => FinishScreen(score: result, maxScore: (quizQuestions.length - 1))),
+          MaterialPageRoute(builder: (context) => ResultScreen(score: result, maxScore: (quizQuestions.length - 1))),
         );
       } else {
         index += 1;
