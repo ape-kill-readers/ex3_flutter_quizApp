@@ -41,6 +41,7 @@ class _QuizeScreenState extends State<ChoiceQuizScreen> {
           context,
           MaterialPageRoute(builder: (context) => ResultScreen(score: result, maxScore: (quizQuestions.length - 1))),
         );
+        debugPrint('quizQuestions.length: ${quizQuestions.length}');
       } else {
         index += 1;
       }
@@ -92,7 +93,6 @@ class _QuizeScreenState extends State<ChoiceQuizScreen> {
           padding: EdgeInsets.symmetric(horizontal: 30.0),
           child: Text('4択クイズ'),
         ),
-        backgroundColor: Colors.blue[300],
       ),
       body: quizQuestions.isEmpty
           ? const Center(
@@ -122,14 +122,14 @@ class QuizWidget extends StatelessWidget {
         child: Stack(children: [
           Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 250,
-                  height: 200,
-                  child: Center(
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom:  40.0),
                     child: Text(
                       quizQuestions[index + 1].question,
-                      style: const TextStyle(fontSize: 60.0),
+                      style: const TextStyle(fontSize: 80.0),
                     ),
                   ),
                 ),

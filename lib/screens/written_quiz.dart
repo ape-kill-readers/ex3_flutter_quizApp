@@ -94,7 +94,6 @@ class _QuizeScreenState extends State<WrittenQuizScreen> {
           padding: EdgeInsets.symmetric(horizontal: 30.0),
           child: Text('記述クイズ'),
         ),
-        backgroundColor: Colors.blue[300],
       ),
       body: quizQuestions.isEmpty
           ? const Center(
@@ -125,15 +124,14 @@ class QuizWidget extends StatelessWidget {
       child: Center(
         child: Stack(children: [
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 250,
-                height: 200,
-                child: Center(
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 40.0),
                   child: Text(
                     quizQuestions[index + 1].question,
-                    style: const TextStyle(
-                        fontSize: 60.0),
+                    style: const TextStyle(fontSize: 80.0),
                   ),
                 ),
               ),

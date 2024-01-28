@@ -16,7 +16,6 @@ class ResultScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 30.0),
           child: Text('結果'),
         ),
-        backgroundColor: Colors.blue[300],
       ),
 
 

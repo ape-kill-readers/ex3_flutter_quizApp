@@ -14,32 +14,43 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 30.0),
           child: Text('英単語クイズ'),
         ),
-        backgroundColor: Colors.blue[300],
       ),
       body: Center(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-              // Navigate to the second screen
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ChoiceQuizScreen()),
-                );
-              },
-              child: const Text('4択クイズ'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                // Navigate to the second screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ChoiceQuizScreen()),
+                  );
+                },
+                child: SizedBox(
+                  child: Center(child: const Text('4択クイズ', style: TextStyle(fontSize: 20),)),
+                  width: 150, height: 50
+                ),
+              ),
             ),
-            const SizedBox(width:  20.0),
-            ElevatedButton(
-              onPressed: () {
-              // Navigate to the second screen
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const WrittenQuizScreen()),
-                );
-              },
-              child: const Text('記述クイズ'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                // Navigate to the second screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const WrittenQuizScreen()),
+                  );
+                },
+                child: SizedBox(
+                  child: Center(child: const Text('記述クイズ', style: TextStyle(fontSize: 20),)),
+                  width: 150, height: 50
+                ),
+              ),
             ),
           ],
         ),

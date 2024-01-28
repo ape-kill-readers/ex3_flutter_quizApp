@@ -14,6 +14,12 @@ class MyApp extends StatelessWidget {
         home: const HomeScreen(),
         theme: ThemeData(
           fontFamily: 'IPAex',
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.yellow[500],
+            iconTheme: const IconThemeData(
+              color: Colors.black87,
+            ),
+          ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               onPrimary: Colors.black87,
@@ -24,7 +30,8 @@ class MyApp extends StatelessWidget {
               primary: Colors.black87,
             )
           ),
-        )
+        ),
+        debugShowCheckedModeBanner: false,
       );
   }
 }
