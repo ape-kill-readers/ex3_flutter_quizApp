@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:csv/csv.dart';
 import 'dart:async' show Future;
@@ -9,9 +11,8 @@ class QuizQuestion {
   String question;
   List<String> options;
   String correctAnswer;
-  String correctNumber;
 
-  QuizQuestion(this.question, this.options, this.correctAnswer, this.correctNumber);
+  QuizQuestion(this.question, this.options, this.correctAnswer);
 }
 
 class WrittenQuizScreen extends StatefulWidget {
@@ -79,7 +80,6 @@ class _QuizeScreenState extends State<WrittenQuizScreen> {
           row[0],
           [row[1], row[2], row[3], row[4]],
           row[5],
-          row[6],
         );
       }).toList();
     });
@@ -92,7 +92,7 @@ class _QuizeScreenState extends State<WrittenQuizScreen> {
         automaticallyImplyLeading: false,
         title: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 30.0),
-          child: Text('記述問題'),
+          child: Text('記述クイズ'),
         ),
         backgroundColor: Colors.blue[300],
       ),
@@ -124,16 +124,18 @@ class QuizWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Center(
         child: Stack(children: [
-          Center(
-            child: _judgeSign,
-          ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Q${index + 1}: ${quizQuestions[index + 1].question}',
-                style: const TextStyle(
-                    fontSize: 18.0, fontWeight: FontWeight.bold),
+              SizedBox(
+                width: 250,
+                height: 200,
+                child: Center(
+                  child: Text(
+                    quizQuestions[index + 1].question,
+                    style: const TextStyle(
+                        fontSize: 60.0),
+                  ),
+                ),
               ),
               Form(
                 child: Column(
@@ -141,6 +143,7 @@ class QuizWidget extends StatelessWidget {
                     TextFormField(
                       controller: _answerController,
                       textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 30.0),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -153,6 +156,9 @@ class QuizWidget extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          Center(
+            child: _judgeSign,
           ),
         ]),
       ),

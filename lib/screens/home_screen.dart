@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const ChoiceQuizScreen()),
                 );
               },
-              child: const Text('4択問題'),
+              child: const Text('4択クイズ'),
             ),
             const SizedBox(width:  20.0),
             ElevatedButton(
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const WrittenQuizScreen()),
                 );
               },
-              child: const Text('記述問題'),
+              child: const Text('記述クイズ'),
             ),
           ],
         ),

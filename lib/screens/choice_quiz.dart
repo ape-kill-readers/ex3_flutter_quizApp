@@ -3,6 +3,8 @@ import 'package:csv/csv.dart';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
+import 'result_screen.dart';
+
 class QuizQuestion {
   String question;
   List<String> options;
@@ -21,6 +23,9 @@ class ChoiceQuizScreen extends StatefulWidget {
 
 class _QuizeScreenState extends State<ChoiceQuizScreen> {
   List<QuizQuestion> quizQuestions = [];
+  int index = 0;
+  int result = 0;
+  Widget _judgeSign = const Text('');
 
   @override
   void initState() {
@@ -28,9 +33,44 @@ class _QuizeScreenState extends State<ChoiceQuizScreen> {
     loadQuizData();
   }
 
+  void nextQuestion() {
+    setState(() {
+      if (index >= quizQuestions.length - 2) {
+        index = 0;
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ResultScreen(score: result, maxScore: (quizQuestions.length - 1))),
+        );
+      } else {
+        index += 1;
+      }
+    });
+  }
+
+  Future<void> judgeAnswer(bool isCorrect) async {
+    setState(() {
+      if (isCorrect){
+        _judgeSign = Text('○',
+            style: TextStyle(fontSize: 300.0, color: Colors.green.shade400));
+        result += 1;
+      } else {
+        _judgeSign = Text('×',
+            style: TextStyle(fontSize: 300.0, color: Colors.red.shade400));
+      }      
+    });
+    await Future.delayed(const Duration(seconds: 2));
+
+    setState(() {
+      _judgeSign = const Text('');
+      nextQuestion();
+    });
+  }
+
   Future<void> loadQuizData() async {
-    final String quizDataString = await rootBundle.loadString('assets/data/quiz_data.csv');
-    final List<List<dynamic>> csvTable = const CsvToListConverter().convert(quizDataString);
+    final String quizDataString =
+        await rootBundle.loadString('assets/data/quiz_data.csv');
+    final List<List<dynamic>> csvTable =
+        const CsvToListConverter().convert(quizDataString);
 
     setState(() {
       quizQuestions = csvTable.map((row) {
@@ -55,51 +95,82 @@ class _QuizeScreenState extends State<ChoiceQuizScreen> {
         backgroundColor: Colors.blue[300],
       ),
       body: quizQuestions.isEmpty
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
-        : QuizWidget(quizQuestions),
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : QuizWidget(
+              quizQuestions, index, _judgeSign, judgeAnswer),
     );
   }
 }
 
+// ignore: must_be_immutable
 class QuizWidget extends StatelessWidget {
+  const QuizWidget(this.quizQuestions, this.index, this._judgeSign, 
+              this.judgeAnswer, {super.key});
 
   final List<QuizQuestion> quizQuestions;
-  const QuizWidget(this.quizQuestions, {super.key});
-  
+  final int index;
+  final Function judgeAnswer;
+  final Widget _judgeSign;
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: quizQuestions.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Q${index + 1}: ${quizQuestions[index].question}',
-                style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10.0),
-              Column(
-                children: quizQuestions[index].options.map((option) {
-                  return RadioListTile(
-                    title: Text(option),
-                    value: option,
-                    groupValue: null,
-                    onChanged: (value) {
-                      // Handle the selected answer
-                      debugPrint('Selected answer: $value');
-                    },
-                  );
-                }).toList(),
-              ),
-            ],
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
+        child: Stack(children: [
+          Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 250,
+                  height: 200,
+                  child: Center(
+                    child: Text(
+                      quizQuestions[index + 1].question,
+                      style: const TextStyle(fontSize: 60.0),
+                    ),
+                  ),
+                ),
+                Column(
+                  children: 
+                    quizQuestions[index + 1].options.map(
+                      (options) => buildChoiceButton(options)
+                    ).toList()
+                ),
+              ],
+            ),
           ),
-        );
-      },
+          Center(
+            child: _judgeSign,
+          ),
+        ]),
+      ),
     );
+  }
+
+  Widget buildChoiceButton(String choiceText) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: OutlinedButton(
+        onPressed: () { onPressedChoice(choiceText); },
+        child: SizedBox(
+          width: 300,
+          height: 40,
+          child: Center(child: Text(choiceText, style: const TextStyle(fontSize: 20.0)))
+        ),
+      ),
+    );
+  }
+
+  void onPressedChoice(String answer) {
+    if (_judgeSign.toString() == (const Text("")).toString()) {
+      if (answer == quizQuestions[index + 1].correctAnswer) {
+        judgeAnswer(true);
+      } else {
+        judgeAnswer(false);
+      }
+    }
   }
 }

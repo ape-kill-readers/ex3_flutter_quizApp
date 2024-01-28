@@ -19,6 +19,11 @@ class MyApp extends StatelessWidget {
               onPrimary: Colors.black87,
             ),
           ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              primary: Colors.black87,
+            )
+          ),
         )
       );
   }
